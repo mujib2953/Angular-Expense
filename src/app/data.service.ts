@@ -1,15 +1,16 @@
 import { Injectable } 					from '@angular/core';
-import { Http, Headers } 				from '@angular/http';
+import { Http, Headers, Response } 		from '@angular/http';
 import { HttpHeaders } 					from '@angular/common/http';
 
 import { API_Ref } 						from './api_ref';
-
+import 'rxjs/Rx';
 @Injectable()
 export class DataService {
 
 	private numArray: number[] = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 ];
 	API_list: any = {
-		signUpApi: '/api/dosignup'
+		signUpApi: '/api/dosignup',
+		signInApi: '/api/dosignin'
 	};
 	BASE_URL: string = 'http://localhost:8031';
 	constructor(
@@ -37,12 +38,9 @@ export class DataService {
 		const reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 
 		if ( reg.test( p_email ) == false )
-			isValid = false 
-
-		// if ( /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test( p_email ) ) {  
-		//   isValid = false;
-		// }  
-		return isValid
+			isValid = false; 
+		
+		return isValid;
 	};
 
 	postCall( p_obj: API_Ref ) {
@@ -55,6 +53,6 @@ export class DataService {
 			p_obj.dataToSend = "";
 
 		// this.http.get(  )
-		return this.http.post( this.BASE_URL + p_obj.url, p_obj.dataToSend, { headers: new Headers() } );
+		return this.http.post( this.BASE_URL + p_obj.url, p_obj.dataToSend, { headers: new Headers() } ).map( ( res: Response ) => res.json() )
 	}
 }
