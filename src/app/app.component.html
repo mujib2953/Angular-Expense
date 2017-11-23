@@ -1,0 +1,217 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="jumbotron text-center">
+	<h1>
+		{{ sharedData.title }}
+	</h1>  
+
+	<div class="container login_parent well">
+		<div class="login_header">
+			<div class="btn-group" role="group" aria-label="Basic example">
+				<button 
+					type="button" 
+					class="btn btn-secondary" 
+					[ngClass]="{ 'active': isLoginActive }" 
+					(click)="_doToggleTab( 0 )"
+				>
+					Sig-In
+				</button>
+				<button 
+					type="button" 
+					class="btn btn-secondary"
+					[ngClass]="{ 'active': !isLoginActive }" 
+					(click)="_doToggleTab( 1 )"
+				>
+					Sign-Up
+				</button>
+			</div>
+		</div>
+		<hr />
+		<div class="login_body">
+			<!-- Sign In Form -->
+			<div class="signin-form" *ngIf="isLoginActive">
+				<!-- Signin -- User Name -->
+				<div class="form-group input-group">
+					<span class="input-group-addon"><i class="fa fa-user-circle" aria-hidden="true"></i></span>
+					<input 
+						type="text" 
+						class="form-control" 
+						id="user_name" 
+						placeholder="User name"
+						[(ngModel)]="sharedData.signInData.user_name"
+					>
+				</div>
+				<!-- Signin -- Password -->
+				<div class="form-group input-group">
+					<span class="input-group-addon"><i class="fa fa-key" aria-hidden="true"></i></span>
+					<input 
+						type="password" 
+						class="form-control" 
+						id="password" 
+						placeholder="Password"
+						[(ngModel)]="sharedData.signInData.password"
+
+						*ngIf="sharedData.signInData.isPasswordActive"
+					>
+
+					<input 
+						type="text" 
+						class="form-control" 
+						id="password" 
+						placeholder="Password"
+						[(ngModel)]="sharedData.signInData.password"
+
+						*ngIf="!sharedData.signInData.isPasswordActive"
+					>
+					<span 
+						*ngIf="sharedData.signInData.isPasswordActive"
+						class="input-group-addon right-addon"
+						(click)="_doChangePasswordFeild( 1 )"
+					>
+						<i class="fa fa-eye" aria-hidden="true"></i>
+					</span>
+
+					<span 
+						*ngIf="!sharedData.signInData.isPasswordActive"
+						class="input-group-addon right-addon"
+						(click)="_doChangePasswordFeild( 1 )"
+					>
+						<i class="fa fa-eye-slash" aria-hidden="true"></i>
+					</span>
+				</div>
+
+				<!-- Signin -- Mobile Number -->
+				<div class="form-group input-group">
+					<span class="input-group-addon"><i class="fa fa-mobile" aria-hidden="true"></i></span>
+					<input 
+						type="number" 
+						class="form-control" 
+						id="mobile_no" 
+						placeholder="Mobile No"
+						[(ngModel)]="sharedData.signInData.mobile_no"
+					>
+				</div>
+
+				<div class="buttons">
+					<button 
+						type="button" 
+						class="btn btn-warning btn-signin"
+						(click)="_doSignin()"
+					>
+						Sign In
+					</button>
+				</div>
+			</div>
+
+			<!-- Sign Up Form -->
+			<div class="signup-form" *ngIf="!isLoginActive" >
+				
+				<!-- Signup -- Name -->
+				<div class="form-group input-group">
+					<span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+					<input 
+						type="text" 
+						class="form-control" 
+						id="name" 
+						placeholder="Name"
+						[(ngModel)]="sharedData.signUpData.name"
+					>
+				</div>
+				<!-- Signup -- Mobile Number -->
+				<div class="form-group input-group">
+					<span class="input-group-addon"><i class="fa fa-mobile" aria-hidden="true"></i></span>
+					<input 
+						type="number" 
+						class="form-control" 
+						id="mob_no" 
+						placeholder="Mobile Number"
+						[(ngModel)]="sharedData.signUpData.mobile_no"
+					>
+				</div>
+				<!-- Signup -- User Name -->
+				<div class="form-group input-group">
+					<span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+					<input 
+						type="text" 
+						class="form-control" 
+						id="user_name" 
+						placeholder="User name"
+						[(ngModel)]="sharedData.signUpData.user_name"
+					>
+				</div>
+				<!-- Signup -- Password -->
+				<div class="form-group input-group">
+					<span class="input-group-addon"><i class="fa fa-key" aria-hidden="true"></i></span>
+					<input 
+						type="password" 
+						class="form-control" 
+						id="password" 
+						placeholder="Password"
+						[(ngModel)]="sharedData.signUpData.password"
+						*ngIf="sharedData.signUpData.isPasswordActive"
+					>
+
+					<input 
+						type="text" 
+						class="form-control" 
+						id="password" 
+						placeholder="Password"
+						[(ngModel)]="sharedData.signUpData.password"
+						*ngIf="!sharedData.signUpData.isPasswordActive"
+					>
+					<span 
+						*ngIf="sharedData.signUpData.isPasswordActive"
+						class="input-group-addon right-addon"
+						(click)="_doChangePasswordFeild( 2 )"
+					>
+						<i class="fa fa-eye" aria-hidden="true"></i>
+					</span>
+
+					<span 
+						*ngIf="!sharedData.signUpData.isPasswordActive"
+						class="input-group-addon right-addon"
+						(click)="_doChangePasswordFeild( 2 )"
+					>
+						<i class="fa fa-eye-slash" aria-hidden="true"></i>
+					</span>
+				</div>
+				<!-- Signup -- Confirm Password -->
+				<div class="form-group input-group">
+					<span class="input-group-addon"><i class="fa fa-key" aria-hidden="true"></i></span>
+					<input 
+						type="password" 
+						class="form-control" 
+						id="c_password" 
+						placeholder="Confirm Password"
+						[(ngModel)]="sharedData.signUpData.re_password"
+					>
+				</div>
+				<!-- Signup -- Email ID -->
+				<div class="form-group input-group">
+					<span class="input-group-addon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+					<input 
+						type="email" 
+						class="form-control" 
+						id="email" 
+						placeholder="Email Id"
+						[(ngModel)]="sharedData.signUpData.email_id"
+					>
+				</div>
+				<div class="buttons">
+					<button 
+						type="button" 
+						class="btn btn-warning btn-signup"
+						(click)="_doSignup()"
+					>
+						Sign Up
+					</button>
+				</div>
+			</div>
+			<!-- Alert message -->
+			<div class="alert alert-danger" role="alert" *ngIf="sharedData.errorText !== ''">
+				{{ sharedData.errorText }}
+			</div>
+
+		</div>
+	</div>
+
+</div>
