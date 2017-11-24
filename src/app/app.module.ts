@@ -7,10 +7,12 @@ import { AppComponent } 					from './app.component';
 
 // --- service
 import { DataService } 						from './data.service';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
 	declarations: [
-		AppComponent
+		AppComponent,
+		FooterComponent
 	],
 	imports: [
 		BrowserModule,

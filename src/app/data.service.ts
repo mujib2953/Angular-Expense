@@ -65,7 +65,7 @@ export class DataService {
 	};
 
 	getCall( p_obj: GET_API_Ref ) {
-		return this.http.get( this.BASE_URL + p_obj.url ).map( ( res: Response ) => { res.json() } );
+		return this.http.get( this.BASE_URL + p_obj.url ).map( ( res: Response ) => res.json() );
 	};
 
 	getCookies( p_name: string ): any {
@@ -78,9 +78,9 @@ export class DataService {
 
 	readAvaliableCurrency(): void {
 		let all_currencies: any = this.getCall({ url: this.API_list.currencies });
-
-		all_currencies.subscribe( resp=> {
-			console.log( all_currencies );
+		
+		all_currencies.subscribe( resp => {
+		
 			if( resp.success ) {
 				this.serviceShareData.currencies = resp.data;
 			} else {
@@ -96,7 +96,12 @@ export class DataService {
 		});
 
 		langResp.subscribe( resp => {
-			console.log( resp );
+			
+			if( resp.success ) {
+				this.serviceShareData.languages = resp.data;
+			} else {
+				console.warn( 'Languages Data is not Loaded.' );
+			}
 		} );
 	};
 
