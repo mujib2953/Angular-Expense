@@ -2,17 +2,26 @@ import { Injectable } 					from '@angular/core';
 import { Http, Headers, Response } 		from '@angular/http';
 import { HttpHeaders } 					from '@angular/common/http';
 
-import { API_Ref } 						from './api_ref';
+import { POST_API_Ref } 				from './api_ref';
+import { GET_API_Ref }					from './api_ref';
 import 'rxjs/Rx';
+let Cookies = require('cookies-js');
 @Injectable()
 export class DataService {
 
 	private numArray: number[] = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 ];
 	API_list: any = {
-		signUpApi: '/api/dosignup',
-		signInApi: '/api/dosignin'
+
+		currencies: 	'/api/currencies',
+		languages: 		'/api/lang',
+
+		signUpApi: 		'/api/dosignup',
+		signInApi: 		'/api/dosignin'
 	};
 	BASE_URL: string = 'http://localhost:8031';
+
+	serviceShareData: any =  {};
+
 	constructor(
 		private http: Http
 	) {
@@ -43,7 +52,7 @@ export class DataService {
 		return isValid;
 	};
 
-	postCall( p_obj: API_Ref ) {
+	postCall( p_obj: POST_API_Ref ) {
 
 		let httpOptions = {
 			headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -52,7 +61,47 @@ export class DataService {
 		if ( typeof p_obj.dataToSend == "undefined" )
 			p_obj.dataToSend = "";
 
-		// this.http.get(  )
 		return this.http.post( this.BASE_URL + p_obj.url, p_obj.dataToSend, { headers: new Headers() } ).map( ( res: Response ) => res.json() )
-	}
+	};
+
+	getCall( p_obj: GET_API_Ref ) {
+		return this.http.get( this.BASE_URL + p_obj.url ).map( ( res: Response ) => { res.json() } );
+	};
+
+	getCookies( p_name: string ): any {
+		return decodeURIComponent( Cookies.get( p_name ) );
+	};
+
+	setCookie( p_obj: any ): void {
+		Cookies.set( p_obj.key, p_obj.value );
+	};
+
+	readAvaliableCurrency(): void {
+		let all_currencies: any = this.getCall({ url: this.API_list.currencies });
+
+		all_currencies.subscribe( resp=> {
+			console.log( all_currencies );
+			if( resp.success ) {
+				this.serviceShareData.currencies = resp.data;
+			} else {
+				console.warn( 'Currencies Data is not Loaded.' );
+			}
+
+		} );
+	};
+
+	readAvailableLanguage(): void {
+		let langResp: any = this.getCall({
+			url: this.API_list.languages
+		});
+
+		langResp.subscribe( resp => {
+			console.log( resp );
+		} );
+	};
+
+	/*************************************************************************
+	 ************************* Private Functions *****************************
+	**************************************************************************/
+	
 }

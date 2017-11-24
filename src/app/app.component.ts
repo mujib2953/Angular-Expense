@@ -47,7 +47,10 @@ export class AppComponent {
 
 	constructor(
 		private dataService: DataService
-	) {};
+	) {
+		this.dataService.readAvaliableCurrency();
+		this.dataService.readAvailableLanguage();
+	};
 
 	_doToggleTab( tabId: number ): void {
 		this.isLoginActive = !this.isLoginActive;
@@ -73,8 +76,21 @@ export class AppComponent {
 				}
 			});
 
-			signInResp.subscribe( data => {
-				console.log( data );
+			signInResp.subscribe( resp => {
+				
+				if( resp.success ) {
+					
+					// --- Successfull Login
+					this.dataService.setCookie( {
+						key: 'userData',
+						value: JSON.stringify({
+							user: resp.data.user_name
+						})
+					} );
+
+				} else {
+					this.sharedData.errorText = ( resp.message.trim() !== '' ) ? resp.message.trim() : "Something wrong happend, Please try agin."
+				}
 			} )
 
 		} else {
