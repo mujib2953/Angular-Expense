@@ -4,13 +4,69 @@
         "signin": "Sign-In",
         "signup": "sign-Up",
         "signin_btn": "Sign In",
-        "signup_btn": "Sign Up"
+        "signup_btn": "Sign Up",
+
+        "username": "User name",
+        "password": "Password",
+        "mobile_no": "Mobile No.",
+
+        "signup_success_msg": "You successfully sign-up. Please login.",
+        "ok": "Ok",
+
+        "name": "Name",
+        "confirm_pswd": "Confirm Password",
+        "email_id": "Email Id",
+
+        "---": "--- Error -- Messages",
+        "username_blank": "User name should not be blank.",
+        "pswd_blank": "Password should not be blank.",
+        "mobile_blank": "Mobile number should not be blank.",
+        
+        "name_only_text": "Please input only text in Name.",
+        "invalid_mobile": "Please enter valid mobile number.",
+        "pswd_nt_matched": "Passwords does not match.",
+        "invalid_email": "Please Enter valid email Id.",
+        "name_blank": "Name should not be blank.",
+        "cfrm_pswd_blank": "Confirm Password should not be blank.",
+        "email_blank": "Email Id should not be blank.",
+
+        "wrng_hpnd": "Something wrong happend, Please try agin.",
+
+        "lang": "Languages"
     },
     "esp": {
         "title": "ExpenzApp",
         "signin": "Registrarse",
         "signup": "Regístrate",
         "signin_btn": "Registrarse",
-        "signup_btn": "Regístrate"
+        "signup_btn": "Regístrate",
+
+        "username": "Nombre de usuario",
+        "password": "Contraseña",
+        "mobile_no": "Número de teléfono móvil",
+
+        "signup_success_msg": "Usted se registra exitosamente. Por favor Iniciar sesión.",
+        "ok": "DE ACUERDO",
+
+        "name": "Nombre",
+        "confirm_pswd": "Confirmar contraseña",
+        "email_id": "Email Id",
+
+        "---": "--- Error -- Messages",
+        "username_blank": "El nombre de usuario no debe estar en blanco.",
+        "pswd_blank": "La contraseña no debe estar en blanco.",
+        "mobile_blank": "El número de móvil no debe estar en blanco.",
+        
+        "name_only_text": "Por favor ingrese solo texto en Nombre.",
+        "invalid_mobile": "Por favor ingrese un número móvil válido.",
+        "pswd_nt_matched": "Las contraseñas no coinciden.",
+        "invalid_email": "Por favor introduzca un correo electrónico válido.",
+        "name_blank": "El nombre no debe estar en blanco.",
+        "cfrm_pswd_blank": "Confirmar contraseña no debe estar en blanco.",
+        "email_blank": "El correo electrónico no debe estar en blanco.",
+
+        "wrng_hpnd": "Algo pasó mal, por favor intente agin.",
+
+        "lang": "Idiomas"
     }
 }

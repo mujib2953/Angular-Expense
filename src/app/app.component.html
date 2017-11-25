@@ -2,7 +2,7 @@
 <app-loader></app-loader>
 <div class="jumbotron text-center myJumbo">
 	<h1>
-		{{ sharedData.title }}
+		{{ dataService.serviceShareData.transData.title }}
 	</h1>  
 
 	<div class="container login_parent well">
@@ -14,7 +14,7 @@
 					[ngClass]="{ 'active': isLoginActive }" 
 					(click)="_doToggleTab( 0 )"
 				>
-					Sig-In
+					{{ dataService.serviceShareData.transData.signin }}
 				</button>
 				<button 
 					type="button" 
@@ -22,14 +22,17 @@
 					[ngClass]="{ 'active': !isLoginActive }" 
 					(click)="_doToggleTab( 1 )"
 				>
-					Sign-Up
+					{{ dataService.serviceShareData.transData.signup }}
 				</button>
 			</div>
 		</div>
 		<hr />
 		<div class="login_body">
 			<!-- Sign In Form -->
-			<div class="signin-form" *ngIf="isLoginActive">
+			<div 
+				class="signin-form" 
+				*ngIf="isLoginActive"
+			>
 				<!-- Signin -- User Name -->
 				<div class="form-group input-group">
 					<span class="input-group-addon"><i class="fa fa-user-circle" aria-hidden="true"></i></span>
@@ -37,7 +40,7 @@
 						type="text" 
 						class="form-control" 
 						id="user_name" 
-						placeholder="User name"
+						placeholder="{{ dataService.serviceShareData.transData.username }}"
 						[(ngModel)]="sharedData.signInData.user_name"
 					>
 				</div>
@@ -48,7 +51,7 @@
 						type="password" 
 						class="form-control" 
 						id="password" 
-						placeholder="Password"
+						placeholder="{{ dataService.serviceShareData.transData.password }}"
 						[(ngModel)]="sharedData.signInData.password"
 
 						*ngIf="sharedData.signInData.isPasswordActive"
@@ -58,7 +61,7 @@
 						type="text" 
 						class="form-control" 
 						id="password" 
-						placeholder="Password"
+						placeholder="{{ dataService.serviceShareData.transData.password }}"
 						[(ngModel)]="sharedData.signInData.password"
 
 						*ngIf="!sharedData.signInData.isPasswordActive"
@@ -87,7 +90,7 @@
 						type="number" 
 						class="form-control" 
 						id="mobile_no" 
-						placeholder="Mobile No"
+						placeholder="{{ dataService.serviceShareData.transData.mobile_no }}"
 						[(ngModel)]="sharedData.signInData.mobile_no"
 					>
 				</div>
@@ -98,13 +101,16 @@
 						class="btn btn-warning btn-signin"
 						(click)="_doSignin()"
 					>
-						Sign In
+						{{ dataService.serviceShareData.transData.signin_btn }}
 					</button>
 				</div>
 			</div>
 
 			<!-- Sign Up Form -->
-			<div class="signup-form" *ngIf="!isLoginActive" >
+			<div 
+				class="signup-form"
+				*ngIf="!isLoginActive"
+			>
 				
 				<!-- Signup -- Name -->
 				<div class="form-group input-group">
@@ -113,7 +119,7 @@
 						type="text" 
 						class="form-control" 
 						id="name" 
-						placeholder="Name"
+						placeholder="{{ dataService.serviceShareData.transData.name }}"
 						[(ngModel)]="sharedData.signUpData.name"
 					>
 				</div>
@@ -124,7 +130,7 @@
 						type="number" 
 						class="form-control" 
 						id="mob_no" 
-						placeholder="Mobile Number"
+						placeholder="{{ dataService.serviceShareData.transData.mobile_no }}"
 						[(ngModel)]="sharedData.signUpData.mobile_no"
 					>
 				</div>
@@ -135,7 +141,7 @@
 						type="text" 
 						class="form-control" 
 						id="user_name" 
-						placeholder="User name"
+						placeholder="{{ dataService.serviceShareData.transData.username }}"
 						[(ngModel)]="sharedData.signUpData.user_name"
 					>
 				</div>
@@ -146,7 +152,7 @@
 						type="password" 
 						class="form-control" 
 						id="password" 
-						placeholder="Password"
+						placeholder="{{ dataService.serviceShareData.transData.password }}"
 						[(ngModel)]="sharedData.signUpData.password"
 						*ngIf="sharedData.signUpData.isPasswordActive"
 					>
@@ -155,7 +161,7 @@
 						type="text" 
 						class="form-control" 
 						id="password" 
-						placeholder="Password"
+						placeholder="{{ dataService.serviceShareData.transData.password }}"
 						[(ngModel)]="sharedData.signUpData.password"
 						*ngIf="!sharedData.signUpData.isPasswordActive"
 					>
@@ -182,7 +188,7 @@
 						type="password" 
 						class="form-control" 
 						id="c_password" 
-						placeholder="Confirm Password"
+						placeholder="{{ dataService.serviceShareData.transData.confirm_pswd }}"
 						[(ngModel)]="sharedData.signUpData.re_password"
 					>
 				</div>
@@ -193,7 +199,7 @@
 						type="email" 
 						class="form-control" 
 						id="email" 
-						placeholder="Email Id"
+						placeholder="{{ dataService.serviceShareData.transData.email_id }}"
 						[(ngModel)]="sharedData.signUpData.email_id"
 					>
 				</div>
@@ -203,7 +209,7 @@
 						class="btn btn-warning btn-signup"
 						(click)="_doSignup()"
 					>
-						Sign Up
+					{{ dataService.serviceShareData.transData.signup_btn }}
 					</button>
 				</div>
 			</div>
@@ -219,7 +225,9 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLongTitle">Sign-up</h5>
+					<h5 class="modal-title" id="exampleModalLongTitle">
+						{{ dataService.serviceShareData.transData.signup }}
+					</h5>
 					<button 
 						(click)="_doCloseModal()" 
 						type="button" 
@@ -231,7 +239,9 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<h4>You successfully sign-up. Please login.</h4>
+					<h4>
+						{{ dataService.serviceShareData.transData.signup_success_msg }}
+					</h4>
 				</div>
 				<div class="modal-footer">
 					<button 
@@ -239,7 +249,7 @@
 						class="btn btn-primary btn-ok-modal"
 						(click)="_doRefreshPage()"
 					>
-						Ok
+					{{ dataService.serviceShareData.transData.ok }}
 					</button>
 				</div>
 			</div>

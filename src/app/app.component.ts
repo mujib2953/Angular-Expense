@@ -12,15 +12,15 @@ export class AppComponent {
 		title: 'ExpenzApp',
 		isModalActive: false,
 		signInData: {
-			// user_name: '',
-			// password: '',
-			// mobile_no: '',
-			// isPasswordActive: true
-			
-			user_name: 'test',
-			password: '123',
-			mobile_no: '9876543210',
+			user_name: '',
+			password: '',
+			mobile_no: '',
 			isPasswordActive: true
+			
+			// user_name: 'test',
+			// password: '123',
+			// mobile_no: '9876543210',
+			// isPasswordActive: true
 		},
 
 		signUpData: {
@@ -48,8 +48,12 @@ export class AppComponent {
 	constructor(
 		private dataService: DataService
 	) {
-		let oScope: any = this;
+		
+	};
 
+	ngOnInit() {
+		let oScope: any = this;
+		
 		this.dataService.toggleLoader( true );
 
 		this.dataService.readAvailableLanguage( function() {
@@ -68,7 +72,7 @@ export class AppComponent {
 
 		const user_name 	= this.sharedData.signInData.user_name.trim(),
 			password 		= this.sharedData.signInData.password.trim(),
-			mobile_no 		= this.sharedData.signInData.mobile_no.trim();
+			mobile_no 		= this.sharedData.signInData.mobile_no;
 
 		let msg: string = '';
 
@@ -96,17 +100,17 @@ export class AppComponent {
 					} );
 
 				} else {
-					this.sharedData.errorText = ( resp.message.trim() !== '' ) ? resp.message.trim() : "Something wrong happend, Please try agin."
+					this.sharedData.errorText = ( resp.message.trim() !== '' ) ? resp.message.trim() : this.dataService.serviceShareData.transData.wrng_hpnd
 				}
 			} )
 
 		} else {
 			if ( user_name === '' )  {
-				msg = 'User name should not be blank.';
+				msg = this.dataService.serviceShareData.transData.username_blank;
 			} else if ( password === '' )  {
-				msg = 'Password should not be blank.';
+				msg = this.dataService.serviceShareData.transData.pswd_blank;
 			} else if  ( mobile_no === '' ) {
-				msg = 'Mobile number should not be blank.';
+				msg = this.dataService.serviceShareData.transData.mobile_blank;
 			}
 
 			this.sharedData.errorText = msg;
@@ -131,16 +135,16 @@ export class AppComponent {
 				isValidEmail = this.dataService.validateEmail( email_id );
 
 			if( !isValidName ) {
-				this.sharedData.errorText = 'Please input only text in Name';
+				this.sharedData.errorText = this.dataService.serviceShareData.transData.name_only_text;
 				return;
 			} else if( mobile_no.toString().length !== 10 ) {
-				this.sharedData.errorText = 'Please enter valid mobile number.';
+				this.sharedData.errorText = this.dataService.serviceShareData.transData.invalid_mobile;
 				return;
 			} else if( password !== re_password ) {
-				this.sharedData.errorText = 'Passwords does not match.';
+				this.sharedData.errorText = this.dataService.serviceShareData.transData.pswd_nt_matched;
 				return;
 			} else if( !isValidEmail ) {
-				this.sharedData.errorText = 'Please Enter valid email Id.';
+				this.sharedData.errorText = this.dataService.serviceShareData.transData.invalid_email;
 				return;
 			} else {
 				// --- All is good Now add User will call
@@ -160,7 +164,7 @@ export class AppComponent {
 					if( data.success ) {
 						this.sharedData.isModalActive = true;
 					} else {
-						this.sharedData.errorText = ( data.message.trim() !== '' ) ? data.message.trim() : "Something wrong happend, Please try agin."
+						this.sharedData.errorText = ( data.message.trim() !== '' ) ? data.message.trim() : this.dataService.serviceShareData.transData.wrng_hpnd
 					}
 
 				} )
@@ -169,17 +173,17 @@ export class AppComponent {
 		} else {
 			// --- user has missed some of the fields.
 			if( name === '' ) {
-				msg = 'Name should not be blank.';
+				msg = this.dataService.serviceShareData.transData.name_blank;
 			} else if  ( mobile_no === '' ) {
-				msg = 'Mobile number should not be blank.';
+				msg = this.dataService.serviceShareData.transData.mobile_blank;
 			} else if ( user_name === '' )  {
-				msg = 'User name should not be blank.';
+				msg = this.dataService.serviceShareData.transData.username_blank;
 			} else if ( password === '' )  {
-				msg = 'Password should not be blank.';
+				msg = this.dataService.serviceShareData.transData.pswd_blank;
 			} else if ( re_password === '' )  {
-				msg = 'Confirm password should not be blank.';
+				msg = this.dataService.serviceShareData.transData.cfrm_pswd_blank;
 			} else if ( email_id === '' )  {
-				msg = 'Email_id should not be blank.';
+				msg = this.dataService.serviceShareData.transData.email_blank;
 			}
 			this.sharedData.errorText = msg;
 		}

@@ -26,7 +26,7 @@ export class DataService {
 	serviceShareData: any =  {
 		actual_languages_lis		: null,
 		languages					: null,
-		transData					: null,
+		transData					: {},
 
 		currencies					: null,
 		actual_currency_lis			: null,
@@ -132,7 +132,6 @@ export class DataService {
 	};
 
 	readAvailableTrans(): void {
-		console.log( 'readAvailableTrans', this.API_list.trans + this.getActiveLangCode() );
 		let transResp = this.getCall({
 			url: this.API_list.trans + this.getActiveLangCode()
 		});
@@ -141,7 +140,7 @@ export class DataService {
 			if( resp.success ) {
 				this.serviceShareData.transData = resp.data;
 			} else {
-				console.warn( 'Languages Data is not Loaded.' );
+				console.warn( 'Translation Data is not Loaded.' );
 			}
 		} );
 	};
