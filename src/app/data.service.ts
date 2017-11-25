@@ -4,8 +4,10 @@ import { HttpHeaders } 					from '@angular/common/http';
 
 import { POST_API_Ref } 				from './api_ref';
 import { GET_API_Ref }					from './api_ref';
+import { Cookies } 						from 'cookies-js';
+
 import 'rxjs/Rx';
-let Cookies = require('cookies-js');
+
 @Injectable()
 export class DataService {
 
