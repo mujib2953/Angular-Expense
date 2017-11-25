@@ -26,9 +26,11 @@
 		_ref			= 'expense-manger/',
 		port 			= 8031;
 
-	var oAllUsers;
+	var oAllUsers,
+		LoadedTransData;
 
-	const saltRounds 	= 10;
+	const saltRounds 	= 10,
+		transFilePath 	= 'Translations/trans.json';
 
 	// --- Support for the JSON data in API
 	app.use( bodyParse.json() );
@@ -293,5 +295,62 @@
 		} );
 
 		
+	} );
+
+	/*==================================================================================
+	* API Count : 04
+	* API Name : /api/trans/{ param }
+	* API Type : GET
+	* Parameters : N/A
+	* will return all the supported language
+	==================================================================================*/
+	app.get( '/api/trans/:lang_name', function( req, res ) {
+		
+		var param = req.params.lang_name,
+			responseData = {
+				success: false,
+				message: '',
+				data: null
+			};
+
+		if( LoadedTransData ) {
+
+			let activeLanguageData = LoadedTransData[ param ];
+
+			if( activeLanguageData ) {
+				responseData.data = activeLanguageData;
+				responseData.success = true;
+				responseData.message = 'Success';
+
+				res.send( responseData );
+			} else {
+				responseData.message = 'Sorry this language is not supported.';
+				res.send( responseData );
+			}
+
+		} else {
+			fs.readFile( transFilePath, function( p_fileReadError, p_fileData ) {
+				if( p_fileReadError ) {
+					responseData.message = 'Unable to read file. Please try after some time';
+					res.send( responseData );
+				}
+
+				LoadedTransData = JSON.parse( p_fileData );
+				
+				let activeLanguageData = LoadedTransData[ param ];
+
+				if( activeLanguageData ) {
+					responseData.data = activeLanguageData;
+					responseData.success = true;
+					responseData.message = 'Success';
+
+					res.send( responseData );
+				} else {
+					responseData.message = 'Sorry this language is not supported.';
+					res.send( responseData );
+				}
+				
+			} );
+		}
 	} );
 }() );

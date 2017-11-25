@@ -1,8 +1,16 @@
 {
-    "english": {
-
+    "eng": {
+        "title": "ExpenzApp",
+        "signin": "Sign-In",
+        "signup": "sign-Up",
+        "signin_btn": "Sign In",
+        "signup_btn": "Sign Up"
     },
-    "espanol": {
-        
+    "esp": {
+        "title": "ExpenzApp",
+        "signin": "Registrarse",
+        "signup": "Regístrate",
+        "signin_btn": "Registrarse",
+        "signup_btn": "Regístrate"
     }
 }
