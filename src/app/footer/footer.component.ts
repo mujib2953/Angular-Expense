@@ -14,9 +14,7 @@ export class FooterComponent implements OnInit {
 
   	constructor(
 		public dataService: DataService	
-	) {
-		console.log( this.dataService.serviceShareData.languages )
-	}
+	) {}
 
 	ngOnInit() {
 	}
@@ -28,5 +26,7 @@ export class FooterComponent implements OnInit {
 	_doSelectLanguage( p_name: string ) {
 		this.footerData.isLangActive = false;
 		this.dataService.serviceShareData.active_lang = p_name;
+
+		this.dataService.readAvailableTrans();
 	};
 }

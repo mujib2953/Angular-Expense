@@ -14,22 +14,25 @@ export class DataService {
 	private numArray: number[] = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 ];
 	API_list: any = {
 
-		currencies: 	'/api/currencies',
-		languages: 		'/api/lang',
+		currencies		: '/api/currencies',
+		languages		: '/api/lang',
+		trans			: '/api/trans/',
 
-		signUpApi: 		'/api/dosignup',
-		signInApi: 		'/api/dosignin'
+		signUpApi		: '/api/dosignup',
+		signInApi		: '/api/dosignin'
 	};
 	BASE_URL: string = 'http://localhost:8031';
-
+	isLoader: boolean = false;
 	serviceShareData: any =  {
 		actual_languages_lis		: null,
 		languages					: null,
+		transData					: null,
 
 		currencies					: null,
 		actual_currency_lis			: null,
 
 		active_lang					: 'English',
+		
 	};
 
 	constructor(
@@ -105,7 +108,7 @@ export class DataService {
 		} );
 	};
 
-	readAvailableLanguage(): void {
+	readAvailableLanguage( p_fcallback: any ): void {
 		let langResp: any = this.getCall({
 			url: this.API_list.languages
 		});
@@ -119,14 +122,38 @@ export class DataService {
 				}
 				this.serviceShareData.languages = tempLang;
 				this.serviceShareData.actual_languages_lis = resp.data;
+
+				if( p_fcallback )
+					p_fcallback();
 			} else {
 				console.warn( 'Languages Data is not Loaded.' );
 			}
 		} );
 	};
 
+	readAvailableTrans(): void {
+		console.log( 'readAvailableTrans', this.API_list.trans + this.getActiveLangCode() );
+		let transResp = this.getCall({
+			url: this.API_list.trans + this.getActiveLangCode()
+		});
+
+		transResp.subscribe( resp => {
+			if( resp.success ) {
+				this.serviceShareData.transData = resp.data;
+			} else {
+				console.warn( 'Languages Data is not Loaded.' );
+			}
+		} );
+	};
+
+	toggleLoader( p_status: boolean ): void {
+		this.isLoader = p_status;
+	};
+
 	/*************************************************************************
 	 ************************* Private Functions *****************************
 	**************************************************************************/
-	
+	private getActiveLangCode(): string {
+		return this.serviceShareData.actual_languages_lis[ this.serviceShareData.active_lang ].code;
+	};
 }

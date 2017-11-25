@@ -8,11 +8,13 @@ import { AppComponent } 					from './app.component';
 // --- service
 import { DataService } 						from './data.service';
 import { FooterComponent } 					from './footer/footer.component';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
 	declarations: [
 		AppComponent,
-		FooterComponent
+		FooterComponent,
+		LoaderComponent
 	],
 	imports: [
 		BrowserModule,

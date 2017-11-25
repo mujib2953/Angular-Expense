@@ -48,8 +48,15 @@ export class AppComponent {
 	constructor(
 		private dataService: DataService
 	) {
+		let oScope: any = this;
+
+		this.dataService.toggleLoader( true );
+
+		this.dataService.readAvailableLanguage( function() {
+			oScope.dataService.readAvailableTrans();
+		} );
 		this.dataService.readAvaliableCurrency();
-		this.dataService.readAvailableLanguage();
+		this.dataService.toggleLoader( false );
 	};
 
 	_doToggleTab( tabId: number ): void {
