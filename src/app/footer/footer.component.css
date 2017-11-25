@@ -7,3 +7,25 @@
     height: 10%;
     border-top: 0.5px solid #777;
 }
+
+.language {
+    position: absolute;
+    left: 5px;
+}
+
+.language button {
+    width: 125px;
+    height: 30px;
+    padding: 0;
+}
+.langDDMenu {
+    top: -280%;
+    left: 37%;
+    display: block;
+}
+.langText {
+    text-align: center;
+}
+.langText:hover {
+    background-color: rgb(104, 226, 115);
+}

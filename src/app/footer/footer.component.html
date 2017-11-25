@@ -1,3 +1,32 @@
 <div class="footer">
 	Hello world
+	<div class="dropup language">
+		Language: 
+		<!-- <button type="button" class="btn btn-secondary">Dropup</button> -->
+		<button 
+			type="button"
+			class="btn btn-secondary dropdown-toggle"
+			data-toggle="dropdown"
+			aria-haspopup="true"
+			aria-expanded="false"
+			(click)="_doToggleLangauage()"
+		>
+			{{ dataService.serviceShareData.active_lang }}
+			
+		</button>
+		<div
+			class="dropdown-menu langDDMenu"
+			aria-labelledby="dropdownMenuButton"
+			*ngIf="footerData.isLangActive"
+		>
+			<a 
+				class="dropdown-item langText"
+				href="#"
+				*ngFor="let lang of dataService.serviceShareData.languages"
+				(click)="_doSelectLanguage( lang.code )"
+			>
+				{{ lang.code | uppercase }}
+			</a>
+		</div>
+	  </div>
 </div>

@@ -22,7 +22,15 @@ export class DataService {
 	};
 	BASE_URL: string = 'http://localhost:8031';
 
-	serviceShareData: any =  {};
+	serviceShareData: any =  {
+		actual_languages_lis		: null,
+		languages					: null,
+
+		currencies					: null,
+		actual_currency_lis			: null,
+
+		active_lang					: 'EN-US',
+	};
 
 	constructor(
 		private http: Http
@@ -84,7 +92,12 @@ export class DataService {
 		all_currencies.subscribe( resp => {
 		
 			if( resp.success ) {
-				this.serviceShareData.currencies = resp.data;
+				let tempCurr = [];
+				for( let i in resp.data ) {
+					tempCurr.push( resp.data[ i ] );
+				}
+				this.serviceShareData.currencies = tempCurr;
+				this.serviceShareData.actual_currency_lis = resp.data;
 			} else {
 				console.warn( 'Currencies Data is not Loaded.' );
 			}
@@ -100,7 +113,12 @@ export class DataService {
 		langResp.subscribe( resp => {
 			
 			if( resp.success ) {
-				this.serviceShareData.languages = resp.data;
+				let tempLang = [];
+				for( let i in resp.data ) {
+					tempLang.push( resp.data[ i ] );
+				}
+				this.serviceShareData.languages = tempLang;
+				this.serviceShareData.actual_languages_lis = resp.data;
 			} else {
 				console.warn( 'Languages Data is not Loaded.' );
 			}
