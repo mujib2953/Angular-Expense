@@ -23,9 +23,9 @@
 				class="dropdown-item langText"
 				href="#"
 				*ngFor="let lang of dataService.serviceShareData.languages"
-				(click)="_doSelectLanguage( lang.code )"
+				(click)="_doSelectLanguage( lang.name )"
 			>
-				{{ lang.code | uppercase }}
+				{{ lang.name }}
 			</a>
 		</div>
 	  </div>

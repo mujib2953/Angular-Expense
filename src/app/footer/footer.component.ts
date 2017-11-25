@@ -27,6 +27,6 @@ export class FooterComponent implements OnInit {
 
 	_doSelectLanguage( p_name: string ) {
 		this.footerData.isLangActive = false;
-		this.dataService.serviceShareData.active_lang = p_name.toUpperCase();
+		this.dataService.serviceShareData.active_lang = p_name;
 	};
 }

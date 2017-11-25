@@ -29,7 +29,7 @@ export class DataService {
 		currencies					: null,
 		actual_currency_lis			: null,
 
-		active_lang					: 'EN-US',
+		active_lang					: 'English',
 	};
 
 	constructor(
