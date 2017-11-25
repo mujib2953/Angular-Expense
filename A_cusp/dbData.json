@@ -1,0 +1,56 @@
+{
+	"currencies": {
+		"INR": {
+			"code": "&#8377;",
+			"name": "Indian Rupees"
+		},
+		"USD": {
+			"code": "&#36;",
+			"name": "US Dollar"
+		},
+		"GBP": {
+			"code": "&#163;",
+			"name": "UK Pound"
+		},
+		"EUR": {
+			"code": "&#8364;",
+			"name": "EURO"
+		},
+		"YEN": {
+			"code": "&#165;",
+			"name": "Japanees Yen"
+		},
+		"CNY": {
+			"code": "&#20803;",
+			"name": "Chinese Yuan Renminbi"
+		}
+	},
+
+	"lang": {
+		"ENG-US": {
+			"name": "English US",
+			"code": "en-us"
+		},
+		"ENG-UK": {
+			"name": "English UK",
+			"code": "en-uk"
+		},
+		"---": "-----",
+		"English": {
+			"name": "English",
+			"code": "english"
+		},
+		"Spanish": {
+			"name": "Spanish",
+			"code": "espanol"
+		}
+	},
+
+	"all_user": {
+		"101": {
+			"temp": "temp"
+		}
+	},
+
+	"lang_list": "http://www.lingoes.net/en/translator/langcode.htm"
+}
