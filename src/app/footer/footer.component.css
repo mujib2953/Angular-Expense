@@ -6,6 +6,7 @@
     background: #cad6e2;
     height: 10%;
     border-top: 0.5px solid #777;
+    padding: 5px 0px;;
 }
 
 .language {
@@ -28,4 +29,12 @@
 }
 .langText:hover {
     background-color: rgb(104, 226, 115);
+}
+.footer-text {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+.heart {
+    color: #F00;
 }
