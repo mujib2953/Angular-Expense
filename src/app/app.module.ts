@@ -9,17 +9,21 @@ import { AppComponent } 					from './app.component';
 import { DataService } 						from './data.service';
 import { FooterComponent } 					from './footer/footer.component';
 import { LoaderComponent } from './loader/loader.component';
+import { HomeComponent } from './home/home.component';
+import { AppRoutingModule } from './app-routing/app-routing.module';
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		FooterComponent,
-		LoaderComponent
+		LoaderComponent,
+		HomeComponent
 	],
 	imports: [
 		BrowserModule,
 		FormsModule,
-		HttpModule
+		HttpModule,
+		AppRoutingModule
 	],
 	providers: [
 		DataService
