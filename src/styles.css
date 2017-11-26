@@ -2,3 +2,12 @@
 
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~font-awesome/css/font-awesome.min.css";
+
+body {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: #e9ecef;
+
+    overflow: hidden;
+}

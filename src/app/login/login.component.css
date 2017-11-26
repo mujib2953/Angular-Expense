@@ -1,0 +1,63 @@
+.myJumbo {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    margin-bottom: 0;
+}
+.login_parent {
+    max-width: 500px;
+    border: 1px solid #444;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.signin_header {
+    font-size: 250%;
+    margin-bottom: 10px;
+}
+
+.btn-signin, .btn-signup {
+    width: 100%;
+    font-weight: bold;
+}
+
+.alert {
+    margin-top: 15px;
+}
+
+.inner-addon { 
+    position: relative; 
+}
+
+/* style icon */
+.inner-addon .glyphicon {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+}
+
+/* align icon */
+.left-addon .glyphicon  { left:  0px;}
+.right-addon .glyphicon { right: 0px;}
+
+/* add padding  */
+.left-addon input  { padding-left:  30px; }
+.right-addon input { padding-right: 30px; }
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+
+.modalActive {
+    display: block;
+    top: 200px;
+    opacity: 1;
+    overflow: inherit;
+}
+.btn-ok-modal {
+    width: 100%;
+}
