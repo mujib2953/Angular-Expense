@@ -1,0 +1,15 @@
+.ntFound {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+
+    text-align: center;
+
+    display: flex;
+    align-items: center;
+}
+.ntFound p {
+    font-size: 80px;
+}

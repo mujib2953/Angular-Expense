@@ -13,6 +13,7 @@ import { LoaderComponent } from './loader/loader.component';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { LoginComponent } from './login/login.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
 	declarations: [
@@ -20,7 +21,8 @@ import { LoginComponent } from './login/login.component';
 		FooterComponent,
 		LoaderComponent,
 		HomeComponent,
-		LoginComponent
+		LoginComponent,
+		PageNotFoundComponent
 	],
 	imports: [
 		BrowserModule,
