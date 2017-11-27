@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
 	};
 
 	constructor(
-		private dataService: DataService
+		private dataService		: DataService
 	) { }
 
 	ngOnInit() {
@@ -61,6 +61,8 @@ export class LoginComponent implements OnInit {
 		} );
 		this.dataService.readAvaliableCurrency();
 		this.dataService.toggleLoader( false );
+
+		this.dataService.routeToHome();
 	};
 
 	_doToggleTab( tabId: number ): void {
@@ -98,6 +100,8 @@ export class LoginComponent implements OnInit {
 							user: resp.data.user_name
 						})
 					} );
+
+					this.dataService.routeToHome();
 
 				} else {
 					this.sharedData.errorText = ( resp.message.trim() !== '' ) ? resp.message.trim() : this.dataService.serviceShareData.transData.wrng_hpnd

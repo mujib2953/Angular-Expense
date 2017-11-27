@@ -3,6 +3,7 @@ import { CookieService } 				from 'ngx-cookie-service';
 import { Injectable } 					from '@angular/core';
 import { Http, Headers, Response } 		from '@angular/http';
 import { HttpHeaders } 					from '@angular/common/http';
+import { Router } 						from '@angular/router';
 
 import { POST_API_Ref } 				from './api_ref';
 import { GET_API_Ref }					from './api_ref';
@@ -38,6 +39,7 @@ export class DataService {
 	};
 
 	constructor(
+		private router				: Router,
 		private http				: Http,
 		private cookieService		: CookieService
 	) {
@@ -102,6 +104,11 @@ export class DataService {
 
 	toggleLoader( p_status: boolean ): void {
 		this.isLoader = p_status;
+	};
+
+	routeToHome(): void {
+		if( this.isCookieExist( 'userData' ) )
+			this.router.navigate( [ '/home' ] );
 	};
 
 	/*************************************************************************
