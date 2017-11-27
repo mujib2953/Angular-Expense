@@ -1,12 +1,14 @@
+import { CookieService } 				from 'ngx-cookie-service';
+
 import { Injectable } 					from '@angular/core';
 import { Http, Headers, Response } 		from '@angular/http';
 import { HttpHeaders } 					from '@angular/common/http';
 
 import { POST_API_Ref } 				from './api_ref';
 import { GET_API_Ref }					from './api_ref';
-import { Cookies } 						from 'cookies-js';
 
 import 'rxjs/Rx';
+
 
 @Injectable()
 export class DataService {
@@ -36,59 +38,12 @@ export class DataService {
 	};
 
 	constructor(
-		private http: Http
+		private http				: Http,
+		private cookieService		: CookieService
 	) {
 
 	}
 	
-	strictTextCheck( p_str: string ): boolean {
-
-		let isFound = true;
-		
-		for( let i in this.numArray ) {
-			if( p_str.indexOf( this.numArray[ i ].toString() ) !== -1 ) {
-				isFound = false;
-				break;
-			}
-		}
-
-		return isFound;
-	};
-
-	validateEmail( p_email: string ): boolean {
-		let isValid: boolean = true;
-		const reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-
-		if ( reg.test( p_email ) == false )
-			isValid = false; 
-		
-		return isValid;
-	};
-
-	postCall( p_obj: POST_API_Ref ) {
-
-		let httpOptions = {
-			headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-		};
-
-		if ( typeof p_obj.dataToSend == "undefined" )
-			p_obj.dataToSend = "";
-
-		return this.http.post( this.BASE_URL + p_obj.url, p_obj.dataToSend, { headers: new Headers() } ).map( ( res: Response ) => res.json() )
-	};
-
-	getCall( p_obj: GET_API_Ref ) {
-		return this.http.get( this.BASE_URL + p_obj.url ).map( ( res: Response ) => res.json() );
-	};
-
-	getCookies( p_name: string ): any {
-		return decodeURIComponent( Cookies.get( p_name ) );
-	};
-
-	setCookie( p_obj: any ): void {
-		Cookies.set( p_obj.key, p_obj.value );
-	};
-
 	readAvaliableCurrency(): void {
 		let all_currencies: any = this.getCall({ url: this.API_list.currencies });
 		
@@ -148,6 +103,89 @@ export class DataService {
 	toggleLoader( p_status: boolean ): void {
 		this.isLoader = p_status;
 	};
+
+	/*************************************************************************
+	 ******************** Cookies functions starts here **********************
+	**************************************************************************/
+	isCookieExist( p_name: string ): boolean {
+		return this.cookieService.check( p_name );
+	};
+
+	getCookies( p_name: string ): any {
+		if( this.isCookieExist( p_name ) ) {
+			return decodeURIComponent( this.cookieService.get( p_name ) );
+		} else {
+			return '';
+		}
+	};
+
+	getAllCookies(): any {
+		return this.cookieService.getAll();
+	};
+
+	// set( name: string, value: string, expires?: number | Date, path?: string, domain?: string, secure?: boolean ): void;
+	setCookie( p_obj: any ): void {
+		this.cookieService.set( p_obj.key, p_obj.value );
+	};
+
+	deleteCookie( p_name ): void {
+		if( this.isCookieExist( p_name ) ) {
+			this.cookieService.delete( p_name );
+		}
+	};
+
+	deleteAllCookie(): void {
+		this.cookieService.deleteAll();
+	};
+	// --------------- Cookies functions ends here ---------------------------
+
+	/*************************************************************************
+	 ******************** API calls starts from here **********************
+	**************************************************************************/
+	postCall( p_obj: POST_API_Ref ) {
+		
+		let httpOptions = {
+			headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+		};
+
+		if ( typeof p_obj.dataToSend == "undefined" )
+			p_obj.dataToSend = "";
+
+		return this.http.post( this.BASE_URL + p_obj.url, p_obj.dataToSend, { headers: new Headers() } ).map( ( res: Response ) => res.json() )
+	};
+		
+	getCall( p_obj: GET_API_Ref ) {
+		return this.http.get( this.BASE_URL + p_obj.url ).map( ( res: Response ) => res.json() );
+	};
+	// --------------- API calls ends here -----------------------------------
+
+	/*************************************************************************
+	 ******************** Some forms validation functions ********************
+	**************************************************************************/
+	strictTextCheck( p_str: string ): boolean {
+		
+		let isFound = true;
+		
+		for( let i in this.numArray ) {
+			if( p_str.indexOf( this.numArray[ i ].toString() ) !== -1 ) {
+				isFound = false;
+				break;
+			}
+		}
+
+		return isFound;
+	};
+
+	validateEmail( p_email: string ): boolean {
+		let isValid: boolean = true;
+		const reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
+		if ( reg.test( p_email ) == false )
+			isValid = false; 
+		
+		return isValid;
+	};
+	// ----------------- Forms validation function ends here -----------------
 
 	/*************************************************************************
 	 ************************* Private Functions *****************************

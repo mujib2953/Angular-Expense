@@ -4,6 +4,7 @@ import { FormsModule } 						from '@angular/forms';
 import { HttpModule } 						from '@angular/http';
 
 import { AppComponent } 					from './app.component';
+import { CookieService } 					from 'ngx-cookie-service';
 
 // --- service
 import { DataService } 						from './data.service';
@@ -28,6 +29,7 @@ import { LoginComponent } from './login/login.component';
 		AppRoutingModule
 	],
 	providers: [
+		CookieService,
 		DataService
 	],
 	bootstrap: [
