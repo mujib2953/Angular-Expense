@@ -33,5 +33,10 @@
 }
 .chart_container {
     position: relative;
-    width: 45%;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
 }
+.chart_container app-line-chart, .chart_container app-doughnut-chart {
+    width: 100%;
+} 

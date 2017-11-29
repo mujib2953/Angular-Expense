@@ -4,8 +4,9 @@
 @import "~font-awesome/css/font-awesome.min.css";
 
 body {
-    position: absolute;
-    height: 100%;
+    position: relative;
+    height: 100vh;
+    min-height: 100%;
     width: 100%;
     background-color: #e9ecef;
 

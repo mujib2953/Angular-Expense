@@ -16,6 +16,7 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LineChartComponent } from './line-chart/line-chart.component';
+import { DoughnutChartComponent } from './doughnut-chart/doughnut-chart.component';
 
 @NgModule({
 	declarations: [
@@ -25,7 +26,8 @@ import { LineChartComponent } from './line-chart/line-chart.component';
 		HomeComponent,
 		LoginComponent,
 		PageNotFoundComponent,
-		LineChartComponent
+		LineChartComponent,
+		DoughnutChartComponent
 	],
 	imports: [
 		BrowserModule,
