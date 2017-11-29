@@ -14,10 +14,23 @@ export class HomeComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
-		let userCookie = this.dataService.getCookies( 'userData' );
+		let userCookie = this.dataService.getCookies( 'userData' ),
+			oScope: any = this;
 		if( userCookie.trim() === '' ) {
 			this.router.navigate(['/login']);
 		}
+		
+		this.dataService.toggleLoader( true );
+
+		if( this.dataService.serviceShareData.languages === null ) {
+			this.dataService.readAvailableLanguage( function() {
+				oScope.dataService.readAvailableTrans();
+			} );
+			this.dataService.readAvaliableCurrency();
+		}
+		
+		this.dataService.toggleLoader( false );
+
 	}
 
 }

@@ -236,7 +236,7 @@
 	} );
 
 	/*==================================================================================
-	* API Count : 03
+	* API Count : 04
 	* API Name : /api/lang
 	* API Type : GET
 	* Parameters : N/A
@@ -298,7 +298,7 @@
 	} );
 
 	/*==================================================================================
-	* API Count : 04
+	* API Count : 05
 	* API Name : /api/trans/{ param }
 	* API Type : GET
 	* Parameters : N/A

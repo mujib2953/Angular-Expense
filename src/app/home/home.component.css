@@ -1,0 +1,33 @@
+.title {
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 34px;
+}
+.mainDiv {
+    margin: 0px auto;
+    width: 800px;
+    background-color: #FFF;
+    padding: 2rem 1rem;
+    border: 0.5px solid grey;
+}
+
+.balance_container {
+    width: 400px;
+    background: #EEE;
+    display: flex;
+    margin: 0 auto;
+    padding: 10px 10px;
+    flex-direction: row;
+    align-items: center;
+}
+
+.balance_text {
+    width: 50%;
+    font-size: 20px;
+}
+.balance {
+    width: 40%;
+    text-align: center;
+    font-size: 25px;
+}
