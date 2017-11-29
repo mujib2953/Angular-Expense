@@ -5,6 +5,7 @@ import { HttpModule } 						from '@angular/http';
 
 import { AppComponent } 					from './app.component';
 import { CookieService } 					from 'ngx-cookie-service';
+import { ChartsModule } 					from 'ng2-charts';
 
 // --- service
 import { DataService } 						from './data.service';
@@ -14,6 +15,7 @@ import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { LineChartComponent } from './line-chart/line-chart.component';
 
 @NgModule({
 	declarations: [
@@ -22,12 +24,14 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 		LoaderComponent,
 		HomeComponent,
 		LoginComponent,
-		PageNotFoundComponent
+		PageNotFoundComponent,
+		LineChartComponent
 	],
 	imports: [
 		BrowserModule,
 		FormsModule,
 		HttpModule,
+		ChartsModule,
 		AppRoutingModule
 	],
 	providers: [
