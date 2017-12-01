@@ -8,6 +8,7 @@
 # dependencies
 /node_modules
 Node server/node_modules
+Native_App/node_modules
 
 # IDEs and editors
 /.idea
