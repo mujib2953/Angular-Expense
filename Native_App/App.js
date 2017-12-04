@@ -6,6 +6,7 @@ import {
 	Text, 
 	View 
 } 										from 'react-native';
+import { Provider } 					from 'react-redux';
 
 // --- custom
 import Loader from './Components/Loader';
@@ -13,9 +14,12 @@ import Loader from './Components/Loader';
 export default class App extends React.Component {
 	render() {
 		return (
-			<View style={styles.container}>
-				<Loader />
-			</View>
+			<Provider store={ store } >
+				<View style={styles.container}>
+					<Loader />
+				</View>
+			</Provider>
+			
 		);
 	}
 }
