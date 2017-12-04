@@ -1,7 +1,7 @@
-import { combineReducers } from 'redux';
+import { combineReducers }                  from 'redux';
 
 // ---- custom Reducers
-import { dataReducer } from './data';
+import { dataReducer }                      from './data';
 
 export const customReducers = combineReducers({
     dataReducer

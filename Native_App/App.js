@@ -1,14 +1,20 @@
 import React 							from 'react';
-import { StyleSheet, Text, View } 		from 'react-native';
 import store 							from './Redux/store';
+import { 
+	ActivityIndicator, 
+	StyleSheet, 
+	Text, 
+	View 
+} 										from 'react-native';
+
+// --- custom
+import Loader from './Components/Loader';
 
 export default class App extends React.Component {
 	render() {
 		return (
 			<View style={styles.container}>
-				<Text>Open up App.js to start working on your app!</Text>
-				<Text>Changes you make will automatically reload.</Text>
-				<Text>Shake your phone to open the developer menu.</Text>
+				<Loader />
 			</View>
 		);
 	}
